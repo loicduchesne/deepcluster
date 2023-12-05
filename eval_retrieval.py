@@ -332,7 +332,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Load the dataset and the image helper
-    print "Prepare the dataset from ", args.dataset
+    print("Prepare the dataset from ", args.dataset)
     dataset = Dataset(args.dataset, args.eval_binary)
 
     ensure_directory_exists(args.temp_dir + '/')

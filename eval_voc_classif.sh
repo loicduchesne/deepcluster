@@ -7,10 +7,10 @@
 #!/bin/bash
 
 VOCDIR=""
-MODELROOT="${HOME}/deepcluster_models"
+MODELROOT="deepcluster_models"
 MODEL="${MODELROOT}/alexnet/checkpoint.pth.tar"
 
-PYTHON="${HOME}/test/conda/bin/python"
+PYTHON="C:/Users/loic4/miniconda3/envs/deepcluster/python.exe"
 
 # with training the batch norm
 # 72.0 mAP

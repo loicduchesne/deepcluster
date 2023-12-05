@@ -6,8 +6,8 @@
 #
 #!/bin/bash
 
-VOC='/private/home/bojanowski/data/VOCdevkit/VOC2007'
-CAFFE='/private/home/bojanowski/code/unsup-eval-pascal/voc-classification/caffe'
+VOC='datasetsVOC/VOCdevkit/VOC2007'
+CAFFE='third-parties/voc-classification/caffe'
 
 # download code for pascal classification
 mkdir -p third-parties
@@ -30,8 +30,8 @@ sed -i -e 's/stepsize=10000/stepsize=5000/g' third-parties/voc-classification/sr
 sed -i -e 's/stepsize=20000/stepsize=5000/g' third-parties/voc-classification/src/train_cls.py
 
 # run transfer
-PROTO="/private/home/mathilde/model-to-release/alexnet/model.prototxt"
-MODEL="/private/home/mathilde/model-to-release/alexnet/model.caffemodel"
+PROTO="deepcluster_models/alexnet/model.prototxt"
+MODEL="deepcluster_models/alexnet/model.caffemodel"
 LR=0.003
 BSZ=16
 EXP=""

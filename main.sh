@@ -6,16 +6,17 @@
 #
 #!/bin/bash
 
-DIR="/datasets01/imagenet_full_size/061417/train"
+DIR="datasets01/tiny-imagenet-200/train"
 ARCH="alexnet"
 LR=0.05
 WD=-5
-K=10000
+K=1000
 WORKERS=12
-EXP="/private/home/${USER}/test/exp"
-PYTHON="/private/home/${USER}/test/conda/bin/python"
+EPOCHS=10
+EXP="test/exp"
+PYTHON="C:/Users/loic4/miniconda3/envs/deepcluster/python.exe"
 
 mkdir -p ${EXP}
 
 CUDA_VISIBLE_DEVICES=0 ${PYTHON} main.py ${DIR} --exp ${EXP} --arch ${ARCH} \
-  --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS}
+  --lr ${LR} --wd ${WD} --k ${K} --sobel --verbose --workers ${WORKERS} --epochs ${EPOCHS}

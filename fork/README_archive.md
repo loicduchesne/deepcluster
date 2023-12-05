@@ -1,30 +1,34 @@
 # Deep Clustering for Unsupervised Learning of Visual Features
-### Improved model from original Meta Research model
 
-## Key changes
-The code is being converted to be useable in Python 3.11, as well as the plugins used such as PyTorch being migrated to a more recent version.
+## News
+We release [paper](https://arxiv.org/abs/2006.09882) and [code](https://github.com/facebookresearch/swav) for SwAV, our new self-supervised method.
+SwAV pushes self-supervised learning to only 1.2% away from supervised learning on ImageNet with a ResNet-50!
+It combines online clustering with a multi-crop data augmentation.
+
+We also present DeepCluster-v2, which is an improved version of DeepCluster (ResNet-50, better data augmentation, cosine learning rate schedule, MLP projection head, use of centroids, ...).
+Check out [DeepCluster-v2 code](https://github.com/facebookresearch/swav/blob/master/main_deepclusterv2.py).
 
 ## DeepCluster
-"This code implements the unsupervised training of convolutional neural networks, or convnets, as described in the paper [Deep Clustering for Unsupervised Learning of Visual Features](https://arxiv.org/abs/1807.05520).
+This code implements the unsupervised training of convolutional neural networks, or convnets, as described in the paper [Deep Clustering for Unsupervised Learning of Visual Features](https://arxiv.org/abs/1807.05520).
 
 Moreover, we provide the evaluation protocol codes we used in the paper:
 * Pascal VOC classification
 * Linear classification on activations
 * Instance-level image retrieval
 
-Finally, this code also includes a visualisation module that allows to assess visually the quality of the learned features." - Meta Research
+Finally, this code also includes a visualisation module that allows to assess visually the quality of the learned features.
 
 ## Requirements
 
-- a Python installation version 3.11
+- a Python installation version 2.7
 - the SciPy and scikit-learn packages
-- a PyTorch install version ([pytorch.org](http://pytorch.org))
-- CUDA 12.1
+- a PyTorch install version 0.1.8 ([pytorch.org](http://pytorch.org))
+- CUDA 8.0
 - a Faiss install ([Faiss](https://github.com/facebookresearch/faiss))
 - The ImageNet dataset (which can be automatically downloaded by recent version of [torchvision](https://pytorch.org/docs/stable/torchvision/datasets.html#imagenet))
 
 ## Pre-trained models
-"We provide pre-trained models with AlexNet and VGG-16 architectures, available for download.
+We provide pre-trained models with AlexNet and VGG-16 architectures, available for download.
 * The models in Caffe format expect BGR inputs that range in [0, 255]. You do not need to subtract the per-color-channel mean image since the preprocessing of the data is already included in our released models.
 * The models in PyTorch format expect RGB inputs that range in [0, 1]. You should preprocessed your data before passing them to the released models by normalizing them: ```mean_rgb = [0.485, 0.456, 0.406]```; ```std_rgb = [0.229, 0.224, 0.225] ```
 Note that in all our released models, sobel filters are computed within the models as two convolutional layers (greyscale + sobel filters).
@@ -257,13 +261,21 @@ From the visu folder, after having changed the fields ```MODEL```, ```EXP```, ``
 ```
 ./activ-retrieval.sh
 ```
-" - Meta Research
+
+## DeeperCluster
+
+We have proposed another unsupervised feature learning paper at ICCV 2019.
+We have shown that unsupervised learning can be used to pre-train convnets, leading to a boost in performance on ImageNet classification.
+We achieve that by scaling DeepCluster to 96M images and mixing it with RotNet self-supervision.
+Check out the [paper](https://arxiv.org/abs/1905.01278) and [code](https://github.com/facebookresearch/DeeperCluster).
 
 ## License
 
 You may find out more about the license [here](https://github.com/facebookresearch/deepcluster/blob/master/LICENSE).
 
 ## Reference
+
+If you use this code, please cite the following paper:
 
 Mathilde Caron, Piotr Bojanowski, Armand Joulin, and Matthijs Douze. "Deep Clustering for Unsupervised Learning of Visual Features." Proc. ECCV (2018).
 

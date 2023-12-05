@@ -154,6 +154,7 @@ def run_kmeans(x, nmb_clusters, verbose=False):
         nmb_clusters (int): number of clusters
     Returns:
         list: ids of data in each cluster
+        list: loss values at each iteration
     """
     n_data, d = x.shape
 
@@ -173,12 +174,18 @@ def run_kmeans(x, nmb_clusters, verbose=False):
     flat_config.device = 0
     index = faiss.GpuIndexFlatL2(res, d, flat_config)
 
-    # perform the training
-    clus.train(x, index)
-    _, I = index.search(x, 1)
-    losses = faiss.vector_to_array(clus.obj)
+    # perform the training and get loss values
+    losses = []
+    for _ in range(clus.niter):
+        clus.train(x, index)
+        loss = clus.iteration_stats.at(clus.niter - 1).obj
+        losses.append(loss)
+
     if verbose:
         print('k-means loss evolution: {0}'.format(losses))
+
+    # Perform search to assign each data point to a cluster
+    _, I = index.search(x, 1)
 
     return [int(n[0]) for n in I], losses[-1]
 

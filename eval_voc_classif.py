@@ -79,7 +79,7 @@ def main():
 
     loader = torch.utils.data.DataLoader(dataset,
          batch_size=16, shuffle=False,
-         num_workers=24, pin_memory=True)
+         num_workers=4, pin_memory=True)
     print('PASCAL VOC 2007 ' + args.split + ' dataset loaded')
 
     # re initialize classifier
@@ -180,10 +180,10 @@ def evaluate(loader, model, eval_random_crops):
             with torch.no_grad():
                 output = model(input)
             if crop < 1 :
-                    scr.append(torch.sum(output, 0, keepdim=True).cpu().numpy())
-                    gts.append(target)
+                scr.append(torch.sum(output, 0, keepdim=True).cpu().numpy())
+                gts.append(target)
             else:
-                    scr[i] += output.cpu().numpy()
+                scr[i] += output.cpu().numpy()
     gts = np.concatenate(gts, axis=0).T
     scr = np.concatenate(scr, axis=0).T
     aps = []
@@ -211,7 +211,7 @@ def train(loader, model, optimizer, criterion, fc6_8, losses, it=0, total_iterat
     for (input, target) in loader:
         # measure data loading time
         data_time.update(time.time() - end)
-        
+
         # adjust learning rate
         if current_iteration != 0 and current_iteration % stepsize == 0:
             for param_group in optimizer.param_groups:
@@ -228,7 +228,7 @@ def train(loader, model, optimizer, criterion, fc6_8, losses, it=0, total_iterat
         mask = (target == 255)
         loss = torch.sum(criterion(output, target).masked_fill_(mask, 0)) / target.size(0)
 
-        # backward 
+        # backward
         optimizer.zero_grad()
         loss.backward()
         # clip gradients
@@ -238,7 +238,7 @@ def train(loader, model, optimizer, criterion, fc6_8, losses, it=0, total_iterat
 
         # measure accuracy and record loss
         losses.update(loss.item(), input.size(0))
-        
+
         # measure elapsed time
         batch_time.update(time.time() - end)
         end = time.time()
@@ -247,8 +247,8 @@ def train(loader, model, optimizer, criterion, fc6_8, losses, it=0, total_iterat
                   'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
                   'Loss {loss.val:.4f} ({loss.avg:.4f})\t'.format(
-                   current_iteration, batch_time=batch_time,
-                   data_time=data_time, loss=losses))
+                current_iteration, batch_time=batch_time,
+                data_time=data_time, loss=losses))
         current_iteration = current_iteration + 1
         if total_iterations is not None and current_iteration == total_iterations:
             break
