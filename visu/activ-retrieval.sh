@@ -6,9 +6,9 @@
 #
 #!/bin/bash
 
-MODEL="$HOME/deepcluster_models/vgg16/checkpoint.pth.tar"
-EXP="$HOME/temp/"
+MODEL="../deepcluster_models/alexnet/checkpoint.pth.tar"
+EXP="../visu_exp/activ-retrieval_exp"
 CONV=5
-DATA='/datasets01/imagenet_full_size/061417/val'
+DATA='../datasets01/tiny-imagenet-200/val'
 
 python activ-retrieval.py --model ${MODEL} --exp ${EXP} --conv ${CONV} --data ${DATA}

@@ -282,10 +282,11 @@ def validate(val_loader, model, reglog, criterion):
             bs, ncrops, c, h, w = input_tensor.size()
             input_tensor = input_tensor.view(-1, c, h, w)
         target = target.cuda(non_blocking=True)
-        input_var = torch.autograd.Variable(input_tensor.cuda(), volatile=True)
-        target_var = torch.autograd.Variable(target, volatile=True)
+        with torch.no_grad():
+            input_var = input_tensor.cuda()
+            target_var = target
 
-        output = reglog(forward(input_var, model, reglog.conv))
+            output = reglog(forward(input_var, model, reglog.conv))
 
         if args.tencrops:
             output_central = output.view(bs, ncrops, -1)[: , int(ncrops / 2 - 1), :]

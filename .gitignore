@@ -5,3 +5,11 @@
 .ipynb_checkpoints
 third-parties/
 third-parties/*
+test/*
+fork/*
+deepcluster_exp/*
+deepcluster_models/*
+datasets01/*
+datasetsVOC/*
+caffe/*
+visu_exp/*

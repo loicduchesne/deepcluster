@@ -6,9 +6,9 @@
 #
 #!/bin/bash
 
-MODEL='/private/home/mathilde/model-to-release/alexnet/checkpoint.pth.tar'
-ARCH='vgg16'
-EXP='/private/home/mathilde/temp'
-CONV=6
+MODEL='../deepcluster_exp/linear_classif/model_best.pth.tar'
+ARCH='alexnet'
+EXP='../visu_exp/gradient_ascent_exp'
+CONV=1
 
 python gradient_ascent.py --model ${MODEL} --exp ${EXP} --conv ${CONV} --arch ${ARCH}
