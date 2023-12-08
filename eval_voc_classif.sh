@@ -6,11 +6,11 @@
 #
 #!/bin/bash
 
-VOCDIR=""
+VOCDIR="datasetsVOC/VOCdevkit/VOC2007"
 MODELROOT="deepcluster_models"
 MODEL="${MODELROOT}/alexnet/checkpoint.pth.tar"
 
-PYTHON="C:/Users/loic4/miniconda3/envs/deepcluster/python.exe"
+PYTHON="C:/Users/loic4/miniconda3/envs/deepcluster36/python.exe"
 
 # with training the batch norm
 # 72.0 mAP

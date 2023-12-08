@@ -9,7 +9,7 @@
 DATA="datasets01/tiny-imagenet-200"
 MODELROOT="deepcluster_models"
 MODEL="${MODELROOT}/alexnet/checkpoint.pth.tar"
-EXP="deepcluster_exp/linear_classif2"
+EXP="deepcluster_exp/linear_classif5"
 
 PYTHON="C:/Users/loic4/miniconda3/envs/deepcluster/python.exe"
 

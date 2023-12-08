@@ -7,7 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 
 VOC="datasetsVOC/VOCdevkit/VOC2007"
-CAFFE="C:/Users/loic4/miniconda3/envs/deepcluster/Lib/site-packages/caffe"
+CAFFE="C:/Users/loic4/miniconda3/envs/caffe/Lib/site-packages/caffe"
 
 # download code for pascal classification
 mkdir -p third-parties
